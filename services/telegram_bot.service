@@ -1,0 +1,16 @@
+# have one service file for each single instance telegram_bot.py and discord_bot.py
+[Unit]
+Description=MONAD Telobot TG
+After=network.target
+
+[Service]
+User=user
+WorkingDirectory=/home/user/venvs/venv
+ExecStart=/home/vboxuser/venvs/venv/bin/python telegram_bot.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/user/telegram_bot.log
+StandardError=append:/home/user/telegram_bot.err
+
+[Install]
+WantedBy=multi-user.target

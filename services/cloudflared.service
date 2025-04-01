@@ -1,0 +1,16 @@
+[Unit]
+Description=Cloudflare Tunnel
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/cloudflared tunnel --config /etc/cloudlflared/config.yml run
+Restart=always
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+User=nobody
+Environment=HOME=/etc/cloudflared
+
+[Install]
+WantedBy=multi-user.target
